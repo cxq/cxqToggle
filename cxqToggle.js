@@ -42,12 +42,12 @@
                 closeToggle(toggle.find('.' + options.headClass))
             }
 
-            head.addClass('active');
+            head.addClass(options.activeClass);
             setEffect(head, false);
         }
 
         function closeToggle(head) {
-            head.removeClass('active');
+            head.removeClass(options.activeClass);
             setEffect(head, true);
         }
 
