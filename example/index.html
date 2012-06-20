@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>cxqToggle</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+
+<div class="toggle toggleShowHide">
+    <div class="toggleHead">
+        <h2>Toggle SHOW/HIDE</h2>
+    </div>
+    <div class="toggleBody">
+        <p>This is an example of toggle with the show and hide effect</p>
+    </div>
+</div>
+
+<div class="toggle toggleFade">
+    <div class="toggleHead">
+        <h2>Toggle SHOW/HIDE</h2>
+    </div>
+    <div class="toggleBody">
+        <p>This is an example of toggle with the show and hide effect</p>
+    </div>
+</div>
+
+<div class="toggle toggleSlide">
+    <div class="toggleHead">
+        <h2>Toggle SHOW/HIDE</h2>
+    </div>
+    <div class="toggleBody">
+        <p>This is an example of toggle with the show and hide effect</p>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/cxqToggle.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        /**
+         * Launch toggle
+         */
+        $(".toggleShowHide").cxqToggle({
+            oneToggle : true,
+            defaultOpen: '',
+            effect:'show',
+            duration : 400
+        });
+
+        /**
+         * Launch toggle fade
+         */
+        $(".toggleFade").cxqToggle({
+            effect:'fade',
+            duration : 400
+        });
+
+        /**
+         * Launch toggle slide
+         */
+        $(".toggleSlide").cxqToggle({
+            effect:'slide',
+            duration : 400
+        });
+    })
+</script>
+
+</body>
+</html>

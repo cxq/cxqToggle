@@ -1,0 +1,26 @@
+/* =============================================================================
+ Toogle
+========================================================================== */
+.toggle {
+    margin-bottom: 25px;
+}
+
+.toggle .toggleHead {
+    font-size: 18px;
+    background: url(../images/bkg-border.png) repeat-x left bottom;
+    padding-bottom: 13px;
+    cursor: pointer;
+}
+
+.toggle .toggleHead .inner {
+    background: url(../images/icons-toggle.png) no-repeat right 0;
+}
+
+.toggle .toggleHead.active .inner {
+    background-position: right -67px;
+}
+
+.toggle .toggleBody {
+    display: none;
+    padding: 10px 0;
+}
