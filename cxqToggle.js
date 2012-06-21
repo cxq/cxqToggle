@@ -9,7 +9,7 @@
         var options = $.extend({
             defaultOpen : '', //string
             oneToggle : true, //boolean
-            duration: 700, //number (milliseconds)
+            duration: 100, //number (milliseconds)
             effect: 'show', //string (show, slide, fade)
             activeClass:'active', //string
             clickElm : 'toggleHead',//string
@@ -61,7 +61,7 @@
                             break;
 
                         case 'fade':
-                            toggleContent.fadeIn(options.duration);
+                            toggleContent.delay(options.duration).fadeIn(options.duration);
                             break;
 
                         case 'slide':
