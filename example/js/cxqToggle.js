@@ -16,62 +16,81 @@
             headClass : 'toggleHead',//string
             bodyClass : 'toggleBody'//string
         }, options);
-        var _this = this;
-        var toggle = $(this);
 
-        if (options.defaultOpen != "") {
-            var openToggleDefault = $(toggle.get(options.defaultOpen));
-            openToggle(openToggleDefault.find('.' + options.headClass));
-        }
+        var toggles = $(this);
+        var togglesContent = toggles.find('.' + options.bodyClass);
+        var closeAllToggle = false;
 
-        bindEvents();
+        this.each(function(index) {
+            var toggle = $(this);
+            var toggleContent = toggle.find('.' + options.bodyClass);
+            if (options.defaultOpen != "" && options.defaultOpen == index + 1)
+                openToggle();
 
-        function bindEvents() {
-            toggle.find('.' + options.clickElm).on('click', function() {
-                var head = $(this).closest('.' + options.headClass);
+            bindEvents();
 
-                if (head.hasClass(options.activeClass))
-                    closeToggle(head)
-                else
-                    openToggle(head);
-            })
-        }
-
-        function openToggle(head) {
-            if (options.oneToggle) {
-                closeToggle(toggle.find('.' + options.headClass))
+            function bindEvents() {
+                toggle.find('.' + options.clickElm).on('click', function() {
+                    if (toggle.hasClass(options.activeClass))
+                        closeToggle();
+                    else
+                        openToggle();
+                })
             }
 
-            head.addClass('active');
-            setEffect(head, false);
-        }
-
-        function closeToggle(head) {
-            head.removeClass('active');
-            setEffect(head, true);
-        }
-
-        function setEffect(head, isToggleOpen) {
-            if (isToggleOpen === false) {
-                switch (options.effect) {
-                    case 'show' :
-                        head.next('.' + options.bodyClass).show();
-                    case 'fade':
-                        head.next('.' + options.bodyClass).fadeIn(options.duration);
-                    case 'slide':
-                        head.next('.' + options.bodyClass).slideDown(options.duration);
+            function openToggle() {
+                if (options.oneToggle) {
+                    closeAllToggle = true;
+                    closeToggle();
                 }
-            } else {
-                switch (options.effect) {
-                    case 'show' :
-                        head.next('.' + options.bodyClass).hide();
-                    case 'fade':
-                        head.next('.' + options.bodyClass).fadeOut(options.duration);
-                    case 'slide':
-                        head.next('.' + options.bodyClass).slideUp(options.duration);
+                setEffect(false);
+            }
+
+            function closeToggle() {
+                setEffect(true);
+            }
+
+            function setEffect(isToggleOpen) {
+                var toggleItemContent;
+
+                if (isToggleOpen === false) {
+                    toggle.addClass(options.activeClass);
+                    switch (options.effect) {
+                        case 'show' :
+                            toggleContent.show();
+                            break;
+
+                        case 'fade':
+                            toggleContent.fadeIn(options.duration);
+                            break;
+
+                        case 'slide':
+                            toggleContent.slideDown(options.duration);
+                            break;
+                    }
+                } else {
+                    var toggleItem = (closeAllToggle) ? toggles : toggle;
+
+                    toggleItem.removeClass(options.activeClass);
+                    toggleItemContent = (closeAllToggle) ? togglesContent : toggleContent;
+                    
+                    switch (options.effect) {
+                        case 'show' :
+                            toggleItemContent.hide();
+                            break;
+
+                        case 'fade':
+                            toggleItemContent.fadeOut(options.duration);
+                            break;
+
+                        case 'slide':
+                            toggleItemContent.slideUp(options.duration);
+                            break;
+                    }
+                    closeAllToggle = false;
                 }
             }
-        }
+        });
 
         return this;
     };
